@@ -1,3 +1,4 @@
+using Api.Infrastructure;
 using Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,8 +18,11 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [Route()]
-        public Task<> AddNewClient()
+        [Route(ActionRoutes.AddClient)]
+        [ProducesResponseType(typeof())]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddClient()
         {
 
         }
