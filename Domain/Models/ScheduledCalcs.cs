@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TimeSeriesDataProcessor.Models
+namespace Domain.Models
 {
     /// <summary>
     /// A record to model the Scheduled_Calcs table in the database.

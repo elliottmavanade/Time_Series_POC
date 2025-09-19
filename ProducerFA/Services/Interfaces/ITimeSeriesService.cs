@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimeSeriesDataProcessor.Models;
 
 namespace ProducerFA.Services.Interfaces
 {
-    public interface ISchedulerService
+    public interface ITimeSeriesService
     {
         Task<List<ScheduledCalcs>> RetrieveScheduledCalculations();
     }

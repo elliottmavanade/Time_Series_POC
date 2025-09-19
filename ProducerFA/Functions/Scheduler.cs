@@ -8,19 +8,19 @@ namespace ProducerFA.Functions
     public class Scheduler
     {
         private readonly ILogger _logger;
-        private readonly ISchedulerService _schedulerService;
-        public Scheduler(ILoggerFactory loggerFactory, ISchedulerService schedulerService, I )
+        private readonly ITimeSeriesService _timeSeriesService;
+        public Scheduler(ILoggerFactory loggerFactory, ITimeSeriesService timeSeriesService)
         {
             _logger = loggerFactory.CreateLogger<Scheduler>();
-            _schedulerService = schedulerService;
+            _timeSeriesService = timeSeriesService;
         }
 
         [Function("GetScheduledCalculations")]
-        public void Run([TimerTrigger("0 0 0 * * * *")] TimerInfo myTimer)
+        public void Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)] TimerInfo myTimer)
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            var jobs = _schedulerService.RetrieveScheduledCalculations();
+            var jobs = _timeSeriesService.RetrieveScheduledCalculations();
 
 
 
