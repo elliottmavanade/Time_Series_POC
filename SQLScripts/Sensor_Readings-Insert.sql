@@ -1,228 +1,138 @@
--- Temperature Sensors (every 30 minutes) - 18/09/2025
--- Sensor 1: Curtin:B01:Temp:Celcius
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 00:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 00:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 01:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 01:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 02:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 02:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 03:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 03:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 04:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 04:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 05:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 05:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 06:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 06:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 07:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 07:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 08:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 08:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 09:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 09:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 10:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 10:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 11:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 11:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 12:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 12:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 13:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 13:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 14:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 14:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 15:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 15:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 16:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 16:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 17:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 17:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 18:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 18:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 19:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 19:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 20:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 20:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 21:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 21:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 20, '2025-09-18 22:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 22:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 22, '2025-09-18 23:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (1, 21, '2025-09-18 23:30:00');
+/* 24-hour sensor readings for Thermostat in Curtin:B01 (Sensor_Id = 1) */
+INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES
+(1, 21, '2025-09-16T00:00:00'),
+(1, 21, '2025-09-16T01:00:00'),
+(1, 20, '2025-09-16T02:00:00'),
+(1, 20, '2025-09-16T03:00:00'),
+(1, 19, '2025-09-16T04:00:00'),
+(1, 19, '2025-09-16T05:00:00'),
+(1, 20, '2025-09-16T06:00:00'),
+(1, 21, '2025-09-16T07:00:00'),
+(1, 22, '2025-09-16T08:00:00'),
+(1, 23, '2025-09-16T09:00:00'),
+(1, 24, '2025-09-16T10:00:00'),
+(1, 25, '2025-09-16T11:00:00'),
+(1, 25, '2025-09-16T12:00:00'),
+(1, 26, '2025-09-16T13:00:00'),
+(1, 26, '2025-09-16T14:00:00'),
+(1, 25, '2025-09-16T15:00:00'),
+(1, 24, '2025-09-16T16:00:00'),
+(1, 23, '2025-09-16T17:00:00'),
+(1, 22, '2025-09-16T18:00:00'),
+(1, 22, '2025-09-16T19:00:00'),
+(1, 21, '2025-09-16T20:00:00'),
+(1, 21, '2025-09-16T21:00:00'),
+(1, 20, '2025-09-16T22:00:00'),
+(1, 20, '2025-09-16T23:00:00');
 
--- Sensor 2: Curtin:B03:Temp:Celcius - 18/09/2025, every 30 min
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 00:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 00:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 01:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 01:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 02:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 02:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 03:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 03:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 04:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 04:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 05:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 05:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 06:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 06:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 07:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 07:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 08:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 08:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 09:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 09:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 10:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 10:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 11:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 11:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 12:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 12:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 13:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 13:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 14:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 14:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 15:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 15:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 16:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 16:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 17:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 17:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 18:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 18:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 19:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 19:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 20:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 20:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 21:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 21:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 20, '2025-09-18 22:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 22:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 22, '2025-09-18 23:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (2, 21, '2025-09-18 23:30:00');
+/* 24-hour sensor readings for Thermostat in Curtin:B03 (Sensor_Id = 2) */
+INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES
+(2, 20, '2025-09-16T00:00:00'),
+(2, 20, '2025-09-16T01:00:00'),
+(2, 19, '2025-09-16T02:00:00'),
+(2, 19, '2025-09-16T03:00:00'),
+(2, 18, '2025-09-16T04:00:00'),
+(2, 18, '2025-09-16T05:00:00'),
+(2, 19, '2025-09-16T06:00:00'),
+(2, 20, '2025-09-16T07:00:00'),
+(2, 21, '2025-09-16T08:00:00'),
+(2, 22, '2025-09-16T09:00:00'),
+(2, 23, '2025-09-16T10:00:00'),
+(2, 24, '2025-09-16T11:00:00'),
+(2, 24, '2025-09-16T12:00:00'),
+(2, 25, '2025-09-16T13:00:00'),
+(2, 25, '2025-09-16T14:00:00'),
+(2, 24, '2025-09-16T15:00:00'),
+(2, 23, '2025-09-16T16:00:00'),
+(2, 22, '2025-09-16T17:00:00'),
+(2, 21, '2025-09-16T18:00:00'),
+(2, 21, '2025-09-16T19:00:00'),
+(2, 20, '2025-09-16T20:00:00'),
+(2, 20, '2025-09-16T21:00:00'),
+(2, 19, '2025-09-16T22:00:00'),
+(2, 19, '2025-09-16T23:00:00');
 
--- Sensor 3: Curtin:B06:Temp:Celcius - 18/09/2025, every 30 min
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 00:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 00:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 01:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 01:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 02:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 02:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 03:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 03:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 04:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 04:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 05:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 05:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 06:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 06:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 07:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 07:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 08:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 08:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 09:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 09:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 10:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 10:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 11:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 11:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 12:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 12:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 13:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 13:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 14:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 14:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 15:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 15:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 16:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 16:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 17:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 17:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 18:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 18:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 19:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 19:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 20:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 20:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 21:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 21:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 22:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 22:30:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 21, '2025-09-18 23:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (3, 22, '2025-09-18 23:30:00');
 
--- Sensor 4: Curtin:B01:Delta:kWh - 18/09/2025, hourly
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 12, '2025-09-18 00:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 10, '2025-09-18 01:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 15, '2025-09-18 02:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 11, '2025-09-18 03:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 14, '2025-09-18 04:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 13, '2025-09-18 05:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 12, '2025-09-18 06:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 16, '2025-09-18 07:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 14, '2025-09-18 08:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 13, '2025-09-18 09:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 15, '2025-09-18 10:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 12, '2025-09-18 11:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 14, '2025-09-18 12:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 13, '2025-09-18 13:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 15, '2025-09-18 14:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 11, '2025-09-18 15:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 14, '2025-09-18 16:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 13, '2025-09-18 17:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 12, '2025-09-18 18:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 15, '2025-09-18 19:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 13, '2025-09-18 20:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 14, '2025-09-18 21:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 12, '2025-09-18 22:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (4, 15, '2025-09-18 23:00:00');
+/* 24-hour sensor readings for Energy Meter in Curtin:B01 (Sensor_Id = 3) */
+INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES
+(3, 2, '2025-09-16T00:00:00'),
+(3, 1, '2025-09-16T01:00:00'),
+(3, 3, '2025-09-16T02:00:00'),
+(3, 2, '2025-09-16T03:00:00'),
+(3, 1, '2025-09-16T04:00:00'),
+(3, 2, '2025-09-16T05:00:00'),
+(3, 3, '2025-09-16T06:00:00'),
+(3, 4, '2025-09-16T07:00:00'),
+(3, 3, '2025-09-16T08:00:00'),
+(3, 2, '2025-09-16T09:00:00'),
+(3, 3, '2025-09-16T10:00:00'),
+(3, 4, '2025-09-16T11:00:00'),
+(3, 5, '2025-09-16T12:00:00'),
+(3, 4, '2025-09-16T13:00:00'),
+(3, 3, '2025-09-16T14:00:00'),
+(3, 2, '2025-09-16T15:00:00'),
+(3, 3, '2025-09-16T16:00:00'),
+(3, 4, '2025-09-16T17:00:00'),
+(3, 5, '2025-09-16T18:00:00'),
+(3, 4, '2025-09-16T19:00:00'),
+(3, 3, '2025-09-16T20:00:00'),
+(3, 2, '2025-09-16T21:00:00'),
+(3, 3, '2025-09-16T22:00:00'),
+(3, 2, '2025-09-16T23:00:00');
 
--- Sensor 5: Curtin:B03:Delta:kWh - 18/09/2025, hourly
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 00:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 12, '2025-09-18 01:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 14, '2025-09-18 02:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 11, '2025-09-18 03:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 15, '2025-09-18 04:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 05:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 12, '2025-09-18 06:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 14, '2025-09-18 07:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 08:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 12, '2025-09-18 09:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 15, '2025-09-18 10:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 11:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 14, '2025-09-18 12:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 13:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 12, '2025-09-18 14:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 14, '2025-09-18 15:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 16:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 12, '2025-09-18 17:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 15, '2025-09-18 18:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 19:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 14, '2025-09-18 20:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 12, '2025-09-18 21:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 15, '2025-09-18 22:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (5, 13, '2025-09-18 23:00:00');
 
--- Sensor 6: Curtin:B06:Delta:kWh - 18/09/2025, hourly
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 11, '2025-09-18 00:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 01:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 02:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 14, '2025-09-18 03:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 04:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 05:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 15, '2025-09-18 06:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 07:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 08:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 14, '2025-09-18 09:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 10:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 11:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 15, '2025-09-18 12:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 13:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 14:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 14, '2025-09-18 15:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 16:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 17:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 15, '2025-09-18 18:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 19:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 20:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 14, '2025-09-18 21:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 13, '2025-09-18 22:00:00');
-INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (6, 12, '2025-09-18 23:00:00');
+/* 24-hour sensor readings for Energy Meter in Curtin:B03 (Sensor_Id = 4) */
+INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES
+(4, 1, '2025-09-16T00:00:00'),
+(4, 2, '2025-09-16T01:00:00'),
+(4, 1, '2025-09-16T02:00:00'),
+(4, 2, '2025-09-16T03:00:00'),
+(4, 3, '2025-09-16T04:00:00'),
+(4, 2, '2025-09-16T05:00:00'),
+(4, 1, '2025-09-16T06:00:00'),
+(4, 3, '2025-09-16T07:00:00'),
+(4, 2, '2025-09-16T08:00:00'),
+(4, 3, '2025-09-16T09:00:00'),
+(4, 4, '2025-09-16T10:00:00'),
+(4, 3, '2025-09-16T11:00:00'),
+(4, 2, '2025-09-16T12:00:00'),
+(4, 3, '2025-09-16T13:00:00'),
+(4, 4, '2025-09-16T14:00:00'),
+(4, 5, '2025-09-16T15:00:00'),
+(4, 4, '2025-09-16T16:00:00'),
+(4, 3, '2025-09-16T17:00:00'),
+(4, 2, '2025-09-16T18:00:00'),
+(4, 3, '2025-09-16T19:00:00'),
+(4, 2, '2025-09-16T20:00:00'),
+(4, 3, '2025-09-16T21:00:00'),
+(4, 2, '2025-09-16T22:00:00'),
+(4, 1, '2025-09-16T23:00:00');
+
+/* 24-hour sensor readings for Energy Meter in Curtin:B06 (Sensor_Id = 5) */
+INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES
+(5, 2, '2025-09-16T00:00:00'),
+(5, 1, '2025-09-16T01:00:00'),
+(5, 2, '2025-09-16T02:00:00'),
+(5, 3, '2025-09-16T03:00:00'),
+(5, 2, '2025-09-16T04:00:00'),
+(5, 3, '2025-09-16T05:00:00'),
+(5, 2, '2025-09-16T06:00:00'),
+(5, 3, '2025-09-16T07:00:00'),
+(5, 4, '2025-09-16T08:00:00'),
+(5, 3, '2025-09-16T09:00:00'),
+(5, 4, '2025-09-16T10:00:00'),
+(5, 5, '2025-09-16T11:00:00'),
+(5, 4, '2025-09-16T12:00:00'),
+(5, 3, '2025-09-16T13:00:00'),
+(5, 4, '2025-09-16T14:00:00'),
+(5, 5, '2025-09-16T15:00:00'),
+(5, 4, '2025-09-16T16:00:00'),
+(5, 3, '2025-09-16T17:00:00'),
+(5, 3, '2025-09-16T18:00:00'),
+(5, 2, '2025-09-16T19:00:00'),
+(5, 3, '2025-09-16T20:00:00'),
+(5, 2, '2025-09-16T21:00:00'),
+(5, 1, '2025-09-16T22:00:00'),
+(5, 2, '2025-09-16T23:00:00');
+
+
