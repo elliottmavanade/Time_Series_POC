@@ -17,7 +17,7 @@ namespace ConsumerFA.Functions
 
         [Function(nameof(Consumer))]
         public async Task Run(
-            [ServiceBusTrigger("myqueue", Connection = "localhosthjgjjhg")]
+            [ServiceBusTrigger("scheduled-tasks-queue", Connection = "SERVICE_BUS_CONNECTION")]
             ServiceBusReceivedMessage message,
             ServiceBusMessageActions messageActions)
         {

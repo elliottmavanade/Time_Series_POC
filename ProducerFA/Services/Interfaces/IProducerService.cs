@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProducerFA.Services.Interfaces
 {
-    internal interface IProducerService
+    public interface IProducerService
     {
+        Task SendMessageAsync(string message);
     }
 }

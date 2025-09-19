@@ -1,4 +1,6 @@
 using System;
+using System.Text.Json;
+using Domain.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using ProducerFA.Services.Interfaces;
@@ -9,10 +11,12 @@ namespace ProducerFA.Functions
     {
         private readonly ILogger _logger;
         private readonly ITimeSeriesService _timeSeriesService;
-        public Scheduler(ILoggerFactory loggerFactory, ITimeSeriesService timeSeriesService)
+        private readonly IProducerService _producerService;
+        public Scheduler(ILoggerFactory loggerFactory, ITimeSeriesService timeSeriesService, IProducerService producerService)
         {
             _logger = loggerFactory.CreateLogger<Scheduler>();
             _timeSeriesService = timeSeriesService;
+            _producerService = producerService;
         }
 
         [Function("GetScheduledCalculations")]
@@ -20,10 +24,13 @@ namespace ProducerFA.Functions
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            var jobs = _timeSeriesService.RetrieveScheduledCalculations();
+            // Make this safer
+            List<ScheduledCalcs> jobs = _timeSeriesService.RetrieveScheduledCalculations().Result;
 
-
-
+            foreach (var job in jobs)
+            {
+                _producerService.SendMessageAsync(JsonSerializer.Serialize(job));
+            }
             if (myTimer.ScheduleStatus is not null)
             {
                 _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");

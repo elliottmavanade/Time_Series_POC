@@ -30,7 +30,8 @@ namespace ProducerFA.Services
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
-            var jobs = JsonSerializer.Deserialize<List<ScheduledCalcs>>(json);
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var jobs = JsonSerializer.Deserialize<List<ScheduledCalcs>>(json, options);
 
             return jobs ?? new List<ScheduledCalcs>();
         }

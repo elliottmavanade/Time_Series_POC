@@ -14,6 +14,6 @@ builder.ConfigureFunctionsWebApplication();
 //     .ConfigureFunctionsApplicationInsights();
 
 builder.Services.AddHttpClient<ITimeSeriesService, TimeSeriesService>();
-builder.Services.AddTransient<IProducerService, ProducerService>();
+builder.Services.AddScoped<IProducerService, ProducerService>();
 
 builder.Build().Run();
