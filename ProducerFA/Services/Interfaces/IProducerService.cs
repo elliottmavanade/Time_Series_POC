@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimeSeriesDataProcessor.Models;
 
 namespace ProducerFA.Services.Interfaces
 {
-    public interface ISchedulerService
+    internal interface IProducerService
     {
-        Task<List<ScheduledCalcs>> RetrieveScheduledCalculations();
     }
 }

@@ -14,5 +14,6 @@ builder.ConfigureFunctionsWebApplication();
 //     .ConfigureFunctionsApplicationInsights();
 
 builder.Services.AddScoped<ISchedulerService, SchedulerService>();
+builder.Services.AddScoped<IProducerService, ProducerService>();
 
 builder.Build().Run();

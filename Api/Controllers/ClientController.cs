@@ -19,12 +19,12 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route(ActionRoutes.AddClient)]
-        [ProducesResponseType(typeof())]
+        //[ProducesResponseType(typeof(String))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddClient()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

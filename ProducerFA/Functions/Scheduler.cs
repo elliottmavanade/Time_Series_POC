@@ -5,13 +5,13 @@ using ProducerFA.Services.Interfaces;
 
 namespace ProducerFA.Functions
 {
-    public class Producer
+    public class Scheduler
     {
         private readonly ILogger _logger;
         private readonly ISchedulerService _schedulerService;
-        public Producer(ILoggerFactory loggerFactory, ISchedulerService schedulerService)
+        public Scheduler(ILoggerFactory loggerFactory, ISchedulerService schedulerService, I )
         {
-            _logger = loggerFactory.CreateLogger<Producer>();
+            _logger = loggerFactory.CreateLogger<Scheduler>();
             _schedulerService = schedulerService;
         }
 
@@ -20,7 +20,9 @@ namespace ProducerFA.Functions
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            _schedulerService.RetrieveScheduledRuns();
+            var jobs = _schedulerService.RetrieveScheduledCalculations();
+
+
 
             if (myTimer.ScheduleStatus is not null)
             {
