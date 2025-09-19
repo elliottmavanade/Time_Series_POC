@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerFA", "ConsumerFA\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProducerFA", "ProducerFA\ProducerFA.csproj", "{BB2D772F-C8FE-4CC7-91FF-3F3F37629A41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSeriesDataProcessor", "TimeSeriesDataProcessor\TimeSeriesDataProcessor.csproj", "{7400B77C-88D4-47A1-A4B0-91BD930C197C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BB2D772F-C8FE-4CC7-91FF-3F3F37629A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB2D772F-C8FE-4CC7-91FF-3F3F37629A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB2D772F-C8FE-4CC7-91FF-3F3F37629A41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7400B77C-88D4-47A1-A4B0-91BD930C197C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7400B77C-88D4-47A1-A4B0-91BD930C197C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7400B77C-88D4-47A1-A4B0-91BD930C197C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7400B77C-88D4-47A1-A4B0-91BD930C197C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
