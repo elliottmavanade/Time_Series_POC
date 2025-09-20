@@ -24,7 +24,7 @@ namespace ProducerFA.Services
 
         public async Task<List<ScheduledCalcs>> RetrieveScheduledCalculations()
         {
-            var url = $"http://localhost:5170/{ApiRoutes.Dashboard}/{ActionRoutes.GetScheduledTasks}";
+            var url = $"http://localhost:5170/{ApiRoutes.TimeSeries}/{ActionRoutes.GetScheduledTasks}";
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 

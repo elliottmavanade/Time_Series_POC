@@ -19,7 +19,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IDashboardService, DashboardService>();
-
+builder.Services.AddScoped<ITimeSeriesService, TimeSeriesService>();
+builder.Services.AddScoped<ISensorService, SensorService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 
 var app = builder.Build();

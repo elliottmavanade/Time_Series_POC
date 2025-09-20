@@ -10,5 +10,6 @@
         // Dashboard
         public const string GetScheduledTasks = "GetScheduledTasks";
         public const string GetSensorRelationships = "GetSensorRelationships/{parentId}";
+        public const string GetSensor = "GetSensor/{sensorId}";
     }
 }

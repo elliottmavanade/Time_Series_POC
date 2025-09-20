@@ -1,9 +1,11 @@
 ﻿using Api.Infrastructure;
 using ConsumerFA.Services.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -22,18 +24,33 @@ namespace ConsumerFA.Services
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
-        public async Task<Dictionary<int, List<int>>> GetSensorRelationships(int parentId)
+        public async Task<Tuple<int, List<int>>> GetSensorRelationships(int parentId)
         {
             var route = ActionRoutes.GetSensorRelationships.Replace("{parentId}", parentId.ToString());
-            var url = $"http://localhost:5170/{ApiRoutes.Dashboard}/{route}";
+            var url = $"http://localhost:5170/{ApiRoutes.Sensor}/{route}";
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var jobs = JsonSerializer.Deserialize<Dictionary<int, List<int>>>(json, options);
+            var jobs = JsonSerializer.Deserialize<Tuple<int, List<int>>>(json, options);
 
-            return jobs ?? new Dictionary<int, List<int>>();
+            return jobs ?? throw new InvalidDataException($"Unable to deserialize Sensor Relationships, {json}");
+        }
+
+        public async Task<Sensor> GetSensor(int sensorId)
+        {
+            var route = ActionRoutes.GetSensor.Replace("{sensorId}", sensorId.ToString());
+            var url = $"http://localhost:5170/{ApiRoutes.Sensor}/{route}";
+            
+            var response = await _httpClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var sensor = JsonSerializer.Deserialize<Sensor>(json, options);
+            
+            return sensor ?? throw new InvalidDataException($"Unable to deserialize Sensor, {json}");
         }
     }
 }

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsumerFA.Services.Interfaces
+namespace Domain.Enums
 {
-    public interface ICalculatorService
+    public enum AggregationType
     {
+        Sum,
+        Avg
     }
 }

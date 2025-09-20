@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace ConsumerFA.Services.Interfaces
 {
     public interface IApiService
     {
-        Task<Dictionary<int, List<int>>> GetSensorRelationships(int parentId);
+        Task<Tuple<int, List<int>>> GetSensorRelationships(int parentId);
+
+        Task<Sensor> GetSensor(int sensorId);
     }
 }

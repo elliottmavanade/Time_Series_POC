@@ -14,11 +14,13 @@ namespace ConsumerFA.Functions
     {
         private readonly ILogger<Consumer> _logger;
         private readonly IApiService _apiService;
+        private readonly ICalculatorService _calculatorService;
 
-        public Consumer(ILogger<Consumer> logger, IApiService apiService)
+        public Consumer(ILogger<Consumer> logger, IApiService apiService, ICalculatorService calculatorService)
         {
             _logger = logger;
             _apiService = apiService;
+            _calculatorService = calculatorService;
         }
 
         [Function("ReceiveScheduledCalculations")]
@@ -50,10 +52,23 @@ namespace ConsumerFA.Functions
                     return;
                 }
 
-                var result = await _apiService.GetSensorRelationships(scheduledCalculationTask.Sensor_Id);
+                // Retrieve sensor relationships to find out what calculations to perform
+                var relationship = await _apiService.GetSensorRelationships(scheduledCalculationTask.Sensor_Id);
+
+                // Retrieve parent sensor details to get aggregation and timespan
+                var sensor = await _apiService.GetSensor(scheduledCalculationTask.Sensor_Id);
+
+                // Retrieve time series data required for calculation
+                var timeSeriesData = await _apiService.GetTimeSeriesData(sensor.Id, relationship);
 
                 // Complete the message only after successful processing
                 await messageActions.CompleteMessageAsync(message);
+            }
+            catch(InvalidDataException ex)
+            {
+                _logger.LogError(ex, "Invalid data encountered while processing message. MessageId: {id}", message.MessageId);
+                // Optionally dead-letter the message
+                await messageActions.DeadLetterMessageAsync(message, null, "InvalidData", ex.Message);
             }
             catch (Exception ex)
             {
