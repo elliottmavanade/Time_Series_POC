@@ -50,5 +50,45 @@ namespace Api.Services
             return scheduledRuns;
         }
 
+
+        public Task<List<int>> GetTimeSeriesDataAsync(int id, int timespan)
+            => QueryTimeSeriesAsync(new[] { id }, timespan);
+
+        public Task<List<int>> GetTimeSeriesDataAsync(IEnumerable<int> ids, int timespan)
+            => QueryTimeSeriesAsync(ids, timespan);
+
+        private async Task<List<int>> QueryTimeSeriesAsync(IEnumerable<int> ids, int timespan)
+        {
+            var valueList = new List<int>();
+
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT Name, Sensor_Id FROM Scheduled_Calcs", _connection);
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                while (await reader.ReadAsync())
+                {
+                    var scheduledRun = new ScheduledCalcs
+                    {
+                        Name = (string)reader["Name"],
+                        Sensor_Id = (int)reader["Sensor_Id"]
+                    };
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return [1];
+        }
+
     }
 }

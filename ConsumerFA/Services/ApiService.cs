@@ -1,7 +1,9 @@
 ﻿using Api.Infrastructure;
 using ConsumerFA.Services.Interfaces;
 using Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Azure.Amqp.Framing;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,7 @@ namespace ConsumerFA.Services
         {
             var route = ActionRoutes.GetSensorRelationships.Replace("{parentId}", parentId.ToString());
             var url = $"http://localhost:5170/{ApiRoutes.Sensor}/{route}";
+
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
@@ -51,6 +54,29 @@ namespace ConsumerFA.Services
             var sensor = JsonSerializer.Deserialize<Sensor>(json, options);
             
             return sensor ?? throw new InvalidDataException($"Unable to deserialize Sensor, {json}");
+        }
+
+        public async Task<List<int>> GetTimeSeriesData(List<int> childIds, int? timespan)
+        {
+            var url = $"http://localhost:5170/{ApiRoutes.TimeSeries}/{ActionRoutes.GetTimeSeriesDataByIds}";
+
+            var data = new
+            {
+                ChildIds = childIds,
+                Timespan = timespan
+            };
+
+            var jsonPayload = JsonSerializer.Serialize(data);
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync(url, content);
+            response.EnsureSuccessStatusCode();
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var  result = JsonSerializer.Deserialize<List<int>>(jsonResponse, options);
+
+            return result;
         }
     }
 }

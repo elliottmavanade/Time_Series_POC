@@ -53,27 +53,42 @@ namespace ConsumerFA.Functions
                 }
 
                 // Retrieve sensor relationships to find out what calculations to perform
-                var relationship = await _apiService.GetSensorRelationships(scheduledCalculationTask.Sensor_Id);
-
+                var relationshipsTask = _apiService.GetSensorRelationships(scheduledCalculationTask.Sensor_Id);
+               
                 // Retrieve parent sensor details to get aggregation and timespan
-                var sensor = await _apiService.GetSensor(scheduledCalculationTask.Sensor_Id);
+                var sensorTask = _apiService.GetSensor(scheduledCalculationTask.Sensor_Id);
+
+                // Run both tasks in parallel
+                await Task.WhenAll(relationshipsTask, sensorTask);
+
+                var relationships = await relationshipsTask;
+                var sensor = await sensorTask;
 
                 // Retrieve time series data required for calculation
-                var timeSeriesData = await _apiService.GetTimeSeriesData(sensor.Id, relationship);
+                var timeSeriesData = await _apiService.GetTimeSeriesData(relationships.Item2, sensor.Timespan);
 
                 // Complete the message only after successful processing
                 await messageActions.CompleteMessageAsync(message);
             }
-            catch(InvalidDataException ex)
+            catch (AggregateException ex)
+            {
+                foreach (var inner in ex.InnerExceptions)
+                {
+                    _logger.LogError(inner, "Error in parallel API calls.");
+                }
+                // Dead-letter the message if API calls fail
+                await messageActions.DeadLetterMessageAsync(message, null, "InvalidData", ex.Message);
+            }
+            catch (InvalidDataException ex)
             {
                 _logger.LogError(ex, "Invalid data encountered while processing message. MessageId: {id}", message.MessageId);
-                // Optionally dead-letter the message
+                // Dead-letter the message if data is invalid
                 await messageActions.DeadLetterMessageAsync(message, null, "InvalidData", ex.Message);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unhandled exception while processing message. MessageId: {id}", message.MessageId);
-                // Optionally abandon the message for retry
+                // Abandon the message to make it available for reprocessing
                 await messageActions.AbandonMessageAsync(message);
             }
         }

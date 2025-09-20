@@ -18,22 +18,17 @@ namespace Api.Services
             _connection.Open();
         }
 
-        public async Task<Dictionary<int, List<int>>> GetSensorRelationshipsAsync(int parentId)
+        public async Task<Tuple<int, List<int>>> GetSensorRelationshipsAsync(int parentId)
         {
-            var sensorRelationships = new Dictionary<int, List<int>>();
+            var childIds = new List<int>();
             try
             {
                 SqlCommand command = new SqlCommand($"SELECT Sensor_Parent_Id, Sensor_Child_Id FROM Sensor_Calc_Relationships WHERE Sensor_Parent_Id = {parentId}", _connection);
                 SqlDataReader reader = await command.ExecuteReaderAsync();
                 while (await reader.ReadAsync())
                 {
-                    int sensorParentId = (int)reader["Sensor_Parent_Id"];
                     int sensorChildId = (int)reader["Sensor_Child_Id"];
-                    if (!sensorRelationships.ContainsKey(sensorParentId))
-                    {
-                        sensorRelationships[sensorParentId] = new List<int>();
-                    }
-                    sensorRelationships[parentId].Add(sensorChildId);
+                    childIds.Add(sensorChildId);
                 }
             }
             catch (SqlException ex)
@@ -48,7 +43,7 @@ namespace Api.Services
             {
                 _connection.Close();
             }
-            return sensorRelationships;
+            return new Tuple<int, List<int>>(parentId, childIds);
         }
 
         public async Task<Sensor?> GetSensorAsync(int sensorId)
@@ -92,7 +87,7 @@ namespace Api.Services
                 Sensor_Model_Id = sensorDto!.Sensor_Model_Id,
                 Location = sensorDto.Location,
                 Aggregation = metadata != null && Enum.TryParse<AggregationType>(metadata.Aggregation, out var agg) ? agg : null,
-                Timespan = metadata.Timespan
+                Timespan = metadata != null ? metadata.Timespan : null
             };
         }
     }

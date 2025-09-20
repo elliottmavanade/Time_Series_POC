@@ -8,7 +8,13 @@
         public const string AddClient = "/AddClient";
 
         // Dashboard
-        public const string GetScheduledTasks = "GetScheduledTasks";
+
+        // TimeSeries
+        public const string GetScheduledCalculations = "GetScheduledTasks";
+        public const string GetTimeSeriesDataById = "GetTimeSeriesData/{sensor_id}/{timespan}";
+        public const string GetTimeSeriesDataByIds = "GetTimeSeriesData";
+
+        // Sensor
         public const string GetSensorRelationships = "GetSensorRelationships/{parentId}";
         public const string GetSensor = "GetSensor/{sensorId}";
     }

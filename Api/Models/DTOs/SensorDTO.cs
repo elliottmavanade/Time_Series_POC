@@ -2,9 +2,9 @@
 {
     public record SensorDTO
     {
-        public int Id { get; init; }
-        public int Sensor_Model_Id { get; init; }
-        public string Location { get; init; }
+        public required int Id { get; init; }
+        public required int Sensor_Model_Id { get; init; }
+        public required string Location { get; init; }
         public string? Metadata { get; init; }
     }
 

@@ -20,7 +20,7 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route(ActionRoutes.GetSensorRelationships)]
-        [ProducesResponseType(typeof(List<ScheduledCalcs>), 200)]
+        [ProducesResponseType(typeof(Tuple<int, List<int>>), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetSensorRelationships(int parentId)
         {
