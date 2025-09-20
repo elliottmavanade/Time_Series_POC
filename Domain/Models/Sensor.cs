@@ -28,7 +28,7 @@ namespace Domain.Models
         /// </value>
         public int Sensor_Model_Id { get; init; }
         /// <summary>
-        /// Gets the location.
+        /// Gets the location of the sensor.
         /// </summary>
         /// <value>
         /// The location.

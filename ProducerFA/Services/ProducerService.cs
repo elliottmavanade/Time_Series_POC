@@ -31,7 +31,6 @@ namespace ProducerFA.Services
                 ServiceBusMessage busMessage = new ServiceBusMessage(message);
                 await sender.SendMessageAsync(busMessage);
                 _logger.LogInformation($"Message sent to queue: {message}");
-                Console.WriteLine($"Message sent to queue: {message}");
             }
             catch (Exception ex)
             {

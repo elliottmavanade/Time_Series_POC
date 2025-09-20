@@ -22,6 +22,10 @@ namespace ProducerFA.Services
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
+        /// <summary>
+        /// Retrieves the scheduled calculations.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ScheduledCalcs>> RetrieveScheduledCalculations()
         {
             var url = $"http://localhost:5170/{ApiRoutes.TimeSeries}/{ActionRoutes.GetScheduledCalculations}";
