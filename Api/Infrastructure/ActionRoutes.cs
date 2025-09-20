@@ -8,6 +8,7 @@
         public const string AddClient = "/AddClient";
 
         // Dashboard
-        public const string GetScheduledRuns = "GetScheduledRuns";
+        public const string GetScheduledTasks = "GetScheduledTasks";
+        public const string GetSensorRelationships = "GetSensorRelationships/{parentId}";
     }
 }

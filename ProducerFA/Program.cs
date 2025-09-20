@@ -13,7 +13,7 @@ builder.ConfigureFunctionsWebApplication();
 //     .AddApplicationInsightsTelemetryWorkerService()
 //     .ConfigureFunctionsApplicationInsights();
 
-builder.Services.AddHttpClient<ITimeSeriesService, TimeSeriesService>();
+builder.Services.AddHttpClient<IApiService, ApiService>();
 builder.Services.AddScoped<IProducerService, ProducerService>();
 
 builder.Build().Run();

@@ -10,12 +10,12 @@ namespace ProducerFA.Functions
     public class Scheduler
     {
         private readonly ILogger _logger;
-        private readonly ITimeSeriesService _timeSeriesService;
+        private readonly IApiService _apiService;
         private readonly IProducerService _producerService;
-        public Scheduler(ILoggerFactory loggerFactory, ITimeSeriesService timeSeriesService, IProducerService producerService)
+        public Scheduler(ILoggerFactory loggerFactory, IApiService apiService, IProducerService producerService)
         {
             _logger = loggerFactory.CreateLogger<Scheduler>();
-            _timeSeriesService = timeSeriesService;
+            _apiService = apiService;
             _producerService = producerService;
         }
 
@@ -25,7 +25,7 @@ namespace ProducerFA.Functions
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
             // Make this safer
-            List<ScheduledCalcs> jobs = _timeSeriesService.RetrieveScheduledCalculations().Result;
+            List<ScheduledCalcs> jobs = _apiService.RetrieveScheduledCalculations().Result;
 
             foreach (var job in jobs)
             {

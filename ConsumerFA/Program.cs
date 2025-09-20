@@ -1,4 +1,7 @@
+using ConsumerFA.Services;
+using ConsumerFA.Services.Interfaces;
 using Microsoft.Azure.Functions.Worker.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = FunctionsApplication.CreateBuilder(args);
@@ -9,5 +12,8 @@ builder.ConfigureFunctionsWebApplication();
 // builder.Services
 //     .AddApplicationInsightsTelemetryWorkerService()
 //     .ConfigureFunctionsApplicationInsights();
+
+builder.Services.AddHttpClient<IApiService, ApiService>();
+builder.Services.AddScoped<ICalculatorService, CalculatorService>();
 
 builder.Build().Run();

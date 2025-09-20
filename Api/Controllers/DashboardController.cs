@@ -2,7 +2,6 @@ using Api.Infrastructure;
 using Api.Services.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using ProducerFA.Infrastructure;
 
 namespace Api.Controllers
 {
@@ -20,12 +19,27 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [Route(ActionRoutes.GetScheduledRuns)]
+        [Route(ActionRoutes.GetScheduledTasks)]
         [ProducesResponseType(typeof(List<ScheduledCalcs>), 200)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetScheduledCalculations()
         {
             var response = await _dashboardService.GetScheduledCalcsAsync();
+
+            if (response == null)
+            {
+                return NoContent();
+            }
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route(ActionRoutes.GetSensorRelationships)]
+        [ProducesResponseType(typeof(List<ScheduledCalcs>), 200)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetSensorRelationships(int parentId)
+        {
+            var response = await _dashboardService.GetSensorRelationshipsAsync(parentId);
 
             if (response == null)
             {

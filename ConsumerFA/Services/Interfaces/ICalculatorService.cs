@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Infrastructure
+namespace ConsumerFA.Services.Interfaces
 {
-    public static class ApiRoutes
+    internal interface ICalculatorService
     {
-        public const string Dashboard = "dashboard";
     }
 }

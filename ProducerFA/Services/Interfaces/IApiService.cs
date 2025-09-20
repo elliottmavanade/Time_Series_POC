@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProducerFA.Services.Interfaces
 {
-    public interface ITimeSeriesService
+    public interface IApiService
     {
         Task<List<ScheduledCalcs>> RetrieveScheduledCalculations();
     }
