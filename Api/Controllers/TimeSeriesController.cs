@@ -66,5 +66,23 @@ namespace Api.Controllers
             }
             return Ok(response);
         }
+
+
+        [HttpPost]
+        [Route(ActionRoutes.AddTimeSeriesResult)]
+        [ProducesResponseType(typeof(List<int>), 202)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddTimeSeriesResult(TimeSeriesResultDTO request)
+        {
+            bool response = false;
+
+            response = await _timeSeriesService.AddTimeSeriesResultAsync(request);
+
+            if (!response)
+            {
+                return BadRequest();
+            }
+            return Accepted(response);
+        }
     }
 }

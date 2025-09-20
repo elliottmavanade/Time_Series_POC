@@ -135,4 +135,14 @@ INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES
 (5, 1, '2025-09-16T22:00:00'),
 (5, 2, '2025-09-16T23:00:00');
 
-
+/* Daily Totals Calc_Curtin:_Sum_Energy_Week works */
+INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES
+(9, 65, '2025-09-08T00:01:00'),
+(9, 72, '2025-09-09T00:01:00'),
+(9, 72, '2025-09-10T00:01:00'),
+(9, 72, '2025-09-11T00:01:00'),
+(9, 72, '2025-09-12T00:01:00'),
+(9, 72, '2025-09-13T00:01:00'),
+(9, 72, '2025-09-14T00:01:00'),
+(9, 72, '2025-09-15T00:01:00'),
+(9, 72, '2025-09-16T00:01:00')

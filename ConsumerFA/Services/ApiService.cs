@@ -1,6 +1,7 @@
 ﻿using Api.Infrastructure;
 using ConsumerFA.Services.Interfaces;
 using Domain.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Azure.Amqp.Framing;
@@ -45,14 +46,14 @@ namespace ConsumerFA.Services
         {
             var route = ActionRoutes.GetSensor.Replace("{sensorId}", sensorId.ToString());
             var url = $"http://localhost:5170/{ApiRoutes.Sensor}/{route}";
-            
+
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var sensor = JsonSerializer.Deserialize<Sensor>(json, options);
-            
+
             return sensor ?? throw new InvalidDataException($"Unable to deserialize Sensor, {json}");
         }
 
@@ -74,9 +75,29 @@ namespace ConsumerFA.Services
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var  result = JsonSerializer.Deserialize<List<int>>(jsonResponse, options);
+            var result = JsonSerializer.Deserialize<List<int>>(jsonResponse, options);
 
             return result;
+        }
+
+        public async Task<bool> AddCalculatedResult(int sensorId, int calculatedResult)
+        {
+            var url = $"http://localhost:5170/{ApiRoutes.TimeSeries}/{ActionRoutes.AddTimeSeriesResult}";
+
+            var data = new
+            {
+                SensorId = sensorId,
+                SensorValue = calculatedResult
+            };
+
+            var jsonPayload = JsonSerializer.Serialize(data);
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync(url, content);
+            response.EnsureSuccessStatusCode();
+
+            return response.IsSuccessStatusCode;
+
         }
     }
 }

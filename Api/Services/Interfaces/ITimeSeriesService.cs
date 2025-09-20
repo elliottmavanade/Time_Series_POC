@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Api.Models.DTOs;
+using Domain.Models;
 
 namespace Api.Services.Interfaces
 {
@@ -9,5 +10,7 @@ namespace Api.Services.Interfaces
         Task<List<int>> GetTimeSeriesDataAsync(IEnumerable<int> ids, int timespan);
 
         Task<List<int>> GetTimeSeriesDataAsync(int id, int timespan);
+
+        Task<bool> AddTimeSeriesResultAsync(TimeSeriesResultDTO request);
     }
 }

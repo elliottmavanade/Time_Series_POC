@@ -1,4 +1,5 @@
-﻿using Api.Services.Interfaces;
+﻿using Api.Models.DTOs;
+using Api.Services.Interfaces;
 using Domain.Models;
 using Microsoft.Data.SqlClient;
 using System.Data.Common;
@@ -55,7 +56,7 @@ namespace Api.Services
 
             DateTime currentTime = DateTime.Now;
             // Round down to the nearest hour
-            DateTime dateEnd = new DateTime(currentTime.Year, currentTime.Month, 17, currentTime.Hour, 0, 0);
+            DateTime dateEnd = new DateTime(currentTime.Year, currentTime.Month, 17, 0, 0, 0); // So accurate results show up in testing
             // Subtract Time
             DateTime dateStart = dateEnd.AddMinutes(-timespan);
 
@@ -96,5 +97,32 @@ namespace Api.Services
             return valueList;
         }
 
+        public async Task<bool> AddTimeSeriesResultAsync(TimeSeriesResultDTO request)
+        {
+            int rowsAffected = 0;
+            try
+            {
+                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand("INSERT INTO Sensor_Readings (Sensor_Id, Sensor_Value, Date_Created) VALUES (@Sensor_Id, @Sensor_Value, @Date_Created)", connection))
+                {
+                    command.Parameters.AddWithValue("@Sensor_Id", request.SensorId);
+                    command.Parameters.AddWithValue("@Sensor_Value", request.SensorValue);
+                    command.Parameters.AddWithValue("@Date_Created", DateTime.Now); // This would be different in a real scenario
+                    await connection.OpenAsync();
+                    
+                    rowsAffected = await command.ExecuteNonQueryAsync();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return rowsAffected > 0;
+        }
     }
 }

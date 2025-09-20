@@ -51,33 +51,39 @@ namespace ConsumerFA.Functions
                     await messageActions.DeadLetterMessageAsync(message, null, "DeserializationFailed", ex.Message);
                     return;
                 }
-                if (scheduledCalculationTask.Sensor_Id != 8)
-                {
-                    // Retrieve sensor relationships to find out what calculations to perform
-                    var relationshipsTask = _apiService.GetSensorRelationships(scheduledCalculationTask.Sensor_Id);
+
+                // Retrieve sensor relationships to find out what calculations to perform
+                var relationshipsTask = _apiService.GetSensorRelationships(scheduledCalculationTask.Sensor_Id);
                
-                    // Retrieve parent sensor details to get aggregation and timespan
-                    var sensorTask = _apiService.GetSensor(scheduledCalculationTask.Sensor_Id);
+                // Retrieve parent sensor details to get aggregation and timespan
+                var sensorTask = _apiService.GetSensor(scheduledCalculationTask.Sensor_Id);
 
-                    // Run both tasks in parallel
-                    await Task.WhenAll(relationshipsTask, sensorTask);
+                // Run both tasks in parallel
+                await Task.WhenAll(relationshipsTask, sensorTask);
 
-                    var relationships = await relationshipsTask;
-                    var sensor = await sensorTask;
+                var relationships = await relationshipsTask;
+                var sensor = await sensorTask;
 
-                    // Retrieve time series data required for calculation
-                    var timeSeriesData = await _apiService.GetTimeSeriesData(relationships.Item2, (int)sensor.Timespan!);
+                // Retrieve time series data required for calculation
+                var timeSeriesData = await _apiService.GetTimeSeriesData(relationships.Item2, (int)sensor.Timespan!);
 
-                    // Perform the calculation
-                    var calculationResult = _calculatorService.Calculate(timeSeriesData, sensor.Aggregation!.ToString());
+                // Perform the calculation
+                var calculationResult = _calculatorService.Calculate(timeSeriesData, sensor.Aggregation.ToString());
 
-                    Console.WriteLine($"The calculation result for: {scheduledCalculationTask.Sensor_Id}, Name: {scheduledCalculationTask.Name} over {sensor.Timespan} is: {calculationResult} ");
-                    // Complete the message only after successful processing
-                }
+                await _apiService.AddCalculatedResult(scheduledCalculationTask.Sensor_Id, calculationResult);
+
+                Console.WriteLine($"The calculation result for: {scheduledCalculationTask.Sensor_Id}, Name: {scheduledCalculationTask.Name} over {sensor.Timespan} is: {calculationResult} ");
+                // Complete the message only after successful processing
 
                 await messageActions.CompleteMessageAsync(message);
             }
-            catch(ArgumentException ex)
+            catch(InvalidOperationException ex)
+            {
+                _logger.LogError(ex, "Invalid operation while processing message. MessageId: {id}", message.MessageId);
+                // Dead-letter the message if there are invalid operations
+                await messageActions.DeadLetterMessageAsync(message, null, "InvalidOperation", ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 _logger.LogError(ex, "Argument error while processing message. MessageId: {id}", message.MessageId);
                 // Dead-letter the message if there are argument issues
