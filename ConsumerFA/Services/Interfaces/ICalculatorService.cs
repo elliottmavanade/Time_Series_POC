@@ -8,5 +8,6 @@ namespace ConsumerFA.Services.Interfaces
 {
     public interface ICalculatorService
     {
+        int Calculate(List<int> data, string aggregation);
     }
 }

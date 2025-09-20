@@ -8,13 +8,6 @@ namespace Api.Services
     public class TimeSeriesService : ITimeSeriesService
     {
         private static string connectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=TimeSeriesPoc;Trusted_Connection=True;";
-        private readonly SqlConnection _connection;
-
-        public TimeSeriesService()
-        {
-            _connection = new SqlConnection(connectionString);
-            _connection.Open();
-        }
 
         public async Task<List<ScheduledCalcs>> GetScheduledCalcsAsync()
         {
@@ -22,17 +15,21 @@ namespace Api.Services
 
             try
             {
-                SqlCommand command = new SqlCommand("SELECT Name, Sensor_Id FROM Scheduled_Calcs", _connection);
-                SqlDataReader reader = await command.ExecuteReaderAsync();
-
-                while (await reader.ReadAsync())
+                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand("SELECT Name, Sensor_Id FROM Scheduled_Calcs", connection))
                 {
-                    var scheduledRun = new ScheduledCalcs
+                    await connection.OpenAsync();
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        Name = (string)reader["Name"],
-                        Sensor_Id = (int)reader["Sensor_Id"]
-                    };
-                    scheduledRuns.Add(scheduledRun);
+                        while (await reader.ReadAsync())
+                        {
+                            scheduledRuns.Add(new ScheduledCalcs
+                            {
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Sensor_Id = reader.GetInt32(reader.GetOrdinal("Sensor_Id"))
+                            });
+                        }
+                    }
                 }
             }
             catch (SqlException ex)
@@ -43,13 +40,8 @@ namespace Api.Services
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            finally
-            {
-                _connection.Close();
-            }
             return scheduledRuns;
         }
-
 
         public Task<List<int>> GetTimeSeriesDataAsync(int id, int timespan)
             => QueryTimeSeriesAsync(new[] { id }, timespan);
@@ -61,18 +53,36 @@ namespace Api.Services
         {
             var valueList = new List<int>();
 
+            DateTime currentTime = DateTime.Now;
+            // Round down to the nearest hour
+            DateTime dateEnd = new DateTime(currentTime.Year, currentTime.Month, 17, currentTime.Hour, 0, 0);
+            // Subtract Time
+            DateTime dateStart = dateEnd.AddMinutes(-timespan);
+
+            var sql = $"SELECT Sensor_Value FROM Sensor_Readings WHERE Sensor_Id IN ({string.Join(",", ids)}) AND Date_Created >= @DateStart AND Date_Created <= @DateEnd";
             try
             {
-                SqlCommand command = new SqlCommand("SELECT Name, Sensor_Id FROM Scheduled_Calcs", _connection);
-                SqlDataReader reader = await command.ExecuteReaderAsync();
-
-                while (await reader.ReadAsync())
+                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand(sql, connection))
                 {
-                    var scheduledRun = new ScheduledCalcs
+                    // Add ID parameters
+                    int idx = 0;
+                    foreach (var id in ids)
                     {
-                        Name = (string)reader["Name"],
-                        Sensor_Id = (int)reader["Sensor_Id"]
-                    };
+                        command.Parameters.AddWithValue($"@id{idx++}", id);
+                    }
+                    // Add date parameters
+                    command.Parameters.AddWithValue("@DateStart", dateStart);
+                    command.Parameters.AddWithValue("@DateEnd", dateEnd);
+
+                    await connection.OpenAsync();
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            valueList.Add(reader.GetInt32(reader.GetOrdinal("Sensor_Value")));
+                        }
+                    }
                 }
             }
             catch (SqlException ex)
@@ -83,11 +93,7 @@ namespace Api.Services
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            finally
-            {
-                _connection.Close();
-            }
-            return [1];
+            return valueList;
         }
 
     }

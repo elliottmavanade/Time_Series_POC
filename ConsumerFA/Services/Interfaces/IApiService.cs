@@ -14,6 +14,6 @@ namespace ConsumerFA.Services.Interfaces
 
         Task<Sensor> GetSensor(int sensorId);
 
-        Task<IActionResult> GetTimeSeriesData(List<int> relationships, int? sensorId);
+        Task<List<int>> GetTimeSeriesData(List<int> childIds, int timespan);
     }
 }

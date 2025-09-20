@@ -57,7 +57,7 @@ namespace Api.Controllers
         {
             var response = new List<int>();
 
-            response = await _timeSeriesService.GetTimeSeriesDataAsync(request.ChildIds.GetEnumerator(), request.Timespan);
+            response = await _timeSeriesService.GetTimeSeriesDataAsync(request.ChildIds, request.Timespan);
          
 
             if (response.Count == 0)

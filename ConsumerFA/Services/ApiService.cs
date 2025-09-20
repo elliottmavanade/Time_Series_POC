@@ -56,7 +56,7 @@ namespace ConsumerFA.Services
             return sensor ?? throw new InvalidDataException($"Unable to deserialize Sensor, {json}");
         }
 
-        public async Task<List<int>> GetTimeSeriesData(List<int> childIds, int? timespan)
+        public async Task<List<int>> GetTimeSeriesData(List<int> childIds, int timespan)
         {
             var url = $"http://localhost:5170/{ApiRoutes.TimeSeries}/{ActionRoutes.GetTimeSeriesDataByIds}";
 

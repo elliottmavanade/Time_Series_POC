@@ -10,25 +10,26 @@ namespace Api.Services
     public class SensorService : ISensorService
     {
         private static string connectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=TimeSeriesPoc;Trusted_Connection=True;";
-        private readonly SqlConnection _connection;
-
-        public SensorService()
-        {
-            _connection = new SqlConnection(connectionString);
-            _connection.Open();
-        }
 
         public async Task<Tuple<int, List<int>>> GetSensorRelationshipsAsync(int parentId)
         {
             var childIds = new List<int>();
             try
             {
-                SqlCommand command = new SqlCommand($"SELECT Sensor_Parent_Id, Sensor_Child_Id FROM Sensor_Calc_Relationships WHERE Sensor_Parent_Id = {parentId}", _connection);
-                SqlDataReader reader = await command.ExecuteReaderAsync();
-                while (await reader.ReadAsync())
+                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand($"SELECT Sensor_Parent_Id, Sensor_Child_Id FROM Sensor_Calc_Relationships WHERE Sensor_Parent_Id = @ParentId", connection))
                 {
-                    int sensorChildId = (int)reader["Sensor_Child_Id"];
-                    childIds.Add(sensorChildId);
+                    command.Parameters.AddWithValue("@ParentId", parentId);
+
+                    await connection.OpenAsync();
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            int sensorChildId = reader.GetInt32(reader.GetOrdinal("Sensor_Child_Id"));
+                            childIds.Add(sensorChildId);
+                        }
+                    }
                 }
             }
             catch (SqlException ex)
@@ -38,30 +39,34 @@ namespace Api.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-            }
-            finally
-            {
-                _connection.Close();
             }
             return new Tuple<int, List<int>>(parentId, childIds);
         }
 
-        public async Task<Sensor?> GetSensorAsync(int sensorId)
+        public async Task<Sensor> GetSensorAsync(int sensorId)
         {
             SensorDTO? sensorDto = null;
             try
             {
-                SqlCommand command = new SqlCommand($"SELECT Id, Sensor_Model_Id, location, Metadata FROM Sensors WHERE Id = {sensorId}", _connection);
-                SqlDataReader reader = await command.ExecuteReaderAsync();
-                if (await reader.ReadAsync())
+                using (var connection = new SqlConnection(connectionString))
+                using (var command = new SqlCommand("SELECT Id, Sensor_Model_Id, location, Metadata FROM Sensors WHERE Id = @SensorId", connection))
                 {
-                    sensorDto = new SensorDTO
+                    command.Parameters.AddWithValue("@SensorId", sensorId);
+                    
+                    await connection.OpenAsync();
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        Id = (int)reader["Id"],
-                        Sensor_Model_Id = (int)reader["Sensor_Model_Id"],
-                        Location = reader["Location"].ToString() ?? string.Empty,
-                        Metadata = reader["Metadata"].ToString() ?? string.Empty
-                    };
+                        while (await reader.ReadAsync())
+                        {
+                            sensorDto = new SensorDTO
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Sensor_Model_Id = reader.GetInt32(reader.GetOrdinal("Sensor_Model_Id")),
+                                Location = reader.GetString(reader.GetOrdinal("Location")),
+                                Metadata = reader.GetString(reader.GetOrdinal("Metadata")) ?? string.Empty
+                            };
+                        }
+                    }
                 }
             }
             catch (SqlException ex)
@@ -71,10 +76,6 @@ namespace Api.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-            }
-            finally
-            {
-                _connection.Close(); //Should you be closign everytime particuarly if you have several jobs happenig?
             }
 
             if (sensorDto == null) return null;
