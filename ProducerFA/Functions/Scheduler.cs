@@ -19,12 +19,13 @@ namespace ProducerFA.Functions
             _producerService = producerService;
         }
 
+
         [Function("GetScheduledCalculations")]
         public void Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)] TimerInfo myTimer)
         {
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-            // Make this safer
+            // TODO: Implement pagingation here to start sending messages in batches.
             List<ScheduledCalcs> jobs = _apiService.RetrieveScheduledCalculations().Result;
 
             foreach (var job in jobs)

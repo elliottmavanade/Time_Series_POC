@@ -33,7 +33,7 @@ The tables and sample data used in this design are as follows:
 		| 1  | Thermostat   | C                |
 		| 2  | EnergyMeter  | kWh              |
 
-- **Sensors**: This table stores information about each sensor, including its type (FK to Sensor_Categories), its location and a Json object to store its optional metadata (eg., Aggregation, Timespan). The location is string that can be seperated on ':' to location the place (eg., Curtin, UWA, etc), the building (eg., B01, B02, etc) and extended further where required. In a production scenario, the location would be its own table and Sensors would contain an FK to the ID.
+- **Sensor**: This table stores information about each sensor, including its type (FK to Sensor_Categories), its location and a Json object to store its optional metadata (eg., Aggregation, Timespan). The location is string that can be seperated on ':' to location the place (eg., Curtin, UWA, etc), the building (eg., B01, B02, etc) and extended further where required. In a production scenario, the location would be its own table and Sensors would contain an FK to the ID.
 	- | Id | Sensor_Model_Id (FK Sensor_Categories [Id]) | Location   | Metadata                              
 		|----|---------------------------------------------|------------|---------------------------------------|
 		| 1  | 1                                           | Curtin:B01 |                                       |
@@ -81,3 +81,78 @@ The tables and sample data used in this design are as follows:
 		
 Below is a DB Design:
 ![DB Design Diagram](./diagrams/TimeSeriesPOCDbDesign.png "DB Design Diagram")
+
+#### Decisions Made
+---
+- **API Layer**:
+	- I chose to implement an API layer to abstract the database layer from the producer and consumer. This was done for multiple reasons:
+		1. Separation of Concerns:
+			- Function Apps only focus on orchestration and processing, not on how data is stored or retrieved.
+			- Removal of duplicate code in multiple Function Apps to query the database.
+		2. Consistent Centralized Business Logic:
+			- The API ensures all consumers see the same view of the data.
+			- Any changes to the database schema or business logic only need to be made in one place.
+		3. Security:
+			- Reduce surface area of attack by limiting direct database access.
+		4. Scalability:
+			- The API abstracts the database, allowing for changes to be made without requiring changes in consumers.
+	- This has also been split up into different controllers and services to ensure single responsibility and separation of concerns.
+		- Some controllers and services have not been implemented as they are out of scope, these include:
+			- ClientController/ClientService: This would perform CRUD operations for clients.
+			- DashboardController/DashboardService: This would retrieve data for the dashboard.
+	- **Improvements**:
+		- Below are some improvements that were out of scope for this POC but should be included in a production scenario:
+			1. Implement caching to reduce database load for frequently accessed data.
+			2. Add rate limiting to prevent abuse and ensure fair usage.
+			3. Implement logging and monitoring to track API usage and performance.
+			4. Add authentication and authorization to secure the API endpoints.
+			5. Implement pagination for endpoints that return large datasets.
+			6. Unit Tests and Integration Tests to ensure the API works as expected.
+- **Producer Function App**:
+	- I chose to use a Function App to act as a producer to add messages to the Service Bus Queue. This was done for multiple reasons:
+		1. Scalability:
+			- Function Apps can scale out automatically based on demand, making them suitable for handling varying workloads. With this being a predicted workload, we can define the autoscaling rules.
+		2. Integration with Azure Services:
+			- Function Apps have built-in integrations with various Azure services, including Service Bus, making it easier to implement the producer-consumer pattern.
+	- **Improvements**:
+		- Below are some improvements that were out of scope for this POC but should be included in a production scenario:
+			1. When querying for scheduled calculations, implement pagination to start producing messages to the queue as soon as possible.
+			2. Use an Orchestrator Function to create a timer and trigger the producer. This could allow for different aggregation intervals for different jobs and making the system more flexible.
+			3. Implement logging and monitoring to track job execution and performance.
+			4. Add error handling and retry logic to handle transient failures.
+			5. Implement unit tests and integration tests to ensure the Function App works as expected.
+- **Consumer Function App**:
+	- I chose to use a Function App to act as a consumer to process messages from the Service Bus Queue. This was done for multiple reasons:
+		1. Scalability:
+			- Function Apps can scale out automatically based on demand, making them suitable for handling varying workloads. With this being a predicted workload, we can define the autoscaling rules.
+		2. Integration with Azure Services:
+			- Function Apps have built-in integrations with various Azure services, including Service Bus, making it easier to implement the producer-consumer pattern.
+		3. Event-Driven Architecture:
+			- Function Apps are designed for event-driven architectures, allowing them to respond to events (like new messages in a queue) efficiently.
+	- **Improvements**:
+		- Below are some improvements that were out of scope for this POC but should be included in a production scenario:
+			1. There is an argument to be made that there is a lot of back and fourth communication between the API and consumer and that this could contribute to overhead. For a production scenario I would run tests to see the overheads and decide if there is value to merging the requests.
+			2. Implement logging and monitoring to track message processing and performance.
+			3. Add error handling and retry logic to handle transient failures.
+			4. Implement unit tests and integration tests to ensure the Function App works as expected.
+
+- **Database Design**:
+	- The tables described are a very simplified version over what a production database woud look like. There is a lot of context and sample data missing that could pave ways for a better design.
+	- **Improvements**:
+		1. The Location column in the Sensors table should be its own table and the Sensors table would just hold a FK to the new Locations table.
+		2. This POC only used the client Curtin and 3 of its buildings for the Sensor table, in reality there would be much more sensor models, units of measurement and locations.
+		3. The metadata stored in Sensor table could be done differently given more context.
+
+
+### How to Run Locally
+---
+##### Azure Service Bus Emulator
+This solution uses the Azure Service Bus Emulator [(Azure Service Bus Emulator Overview)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator) and is required for local testing. Navigate to [here](./emulator) and run ```docker compose up```. This will start the Service Bus Emulator. An error I faced after setting up the emulator is my Function Apps wouldn't work without running a Storage Account Emulator, to fix this I ran this command: ```docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite```.
+
+##### The Database
+This solution uses the localDB on SQLServer, go to your SQL Server Management Studio and create a database called ```TimeSeriesPoc```. From here locate the [SQL scripts](./SQLScripts) to create tables and hydrate the database with sample data.
+
+#### Startup Projects
+Configure the startup project profile to include the Api, ProducerFA, and ConsumerFA. From here you can start the solution. The producer will run every 5 minutes and runs on initial startup. From here the producer will communicate with the API for a list of jobs and place these items on the Service Bus Queue. This will trigger the consumer to from the API the relationships, the sensor details and all the time series data for the query. It will then calculate the aggregation and write that to the database.
+
+To validate this has worked, select from the Sensor_Readings table and see that the aggregation sensor_ids have been inserted and are correct.
