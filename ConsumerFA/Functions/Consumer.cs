@@ -70,11 +70,12 @@ namespace ConsumerFA.Functions
                 // Perform the calculation
                 var calculationResult = _calculatorService.Calculate(timeSeriesData, sensor.Aggregation.ToString());
 
+                // Add the aggregated result into the Time Series table
                 await _apiService.AddCalculatedResult(scheduledCalculationTask.Sensor_Id, calculationResult);
 
                 Console.WriteLine($"The calculation result for: {scheduledCalculationTask.Sensor_Id}, Name: {scheduledCalculationTask.Name} over {sensor.Timespan} is: {calculationResult} ");
+                
                 // Complete the message only after successful processing
-
                 await messageActions.CompleteMessageAsync(message);
             }
             catch(InvalidOperationException ex)
