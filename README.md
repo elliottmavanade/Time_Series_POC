@@ -29,22 +29,22 @@ All table scripts can be located [here](./SQLScripts)
 The tables and sample data used in this design are as follows:
 - **Sensor_Categories**: This table stores information on the sensors model and its unit of measurement along with an identifier.	
 	- | Id | Sensor_Model | Measurement_Unit 
-	|----|--------------|------------------|
-	| 1  | Thermostat   | C                |
-	| 2  | EnergyMeter  | kWh              |
+		|----|--------------|------------------|
+		| 1  | Thermostat   | C                |
+		| 2  | EnergyMeter  | kWh              |
 
 - **Sensors**: This table stores information about each sensor, including its type (FK to Sensor_Categories), its location and a Json object to store its optional metadata (eg., Aggregation, Timespan). The location is string that can be seperated on ':' to location the place (eg., Curtin, UWA, etc), the building (eg., B01, B02, etc) and extended further where required. In a production scenario, the location would be its own table and Sensors would contain an FK to the ID.
 	- | Id | Sensor_Model_Id (FK Sensor_Categories [Id]) | Location   | Metadata                              
-|----|---------------------------------------------|------------|---------------------------------------|
-| 1  | 1                                           | Curtin:B01 |                                       |
-| 2  | 1                                           | Curtin:B03 |                                       |
-| 3  | 2                                           | Curtin:B01 |                                       |
-| 4  | 2                                           | Curtin:B03 |                                       |
-| 5  | 2                                           | Curtin:B06 |                                       |
-| 6  | 2                                           | Curtin:B01 | {"Aggregation":"Sum", "TimeSpan":1440}|
-| 7  | 1                                           | Curtin:    | {"Aggregation":"Avg", "TimeSpan":1440}|
-| 8  | 2                                           | Curtin:    | {"Aggregation":"Sum", "TimeSpan":10080}|
-| 9  | 2                                           | Curtin:    | {"Aggregation":"Sum", "TimeSpan":1440}|
+		|----|---------------------------------------------|------------|---------------------------------------|
+		| 1  | 1                                           | Curtin:B01 |                                       |
+		| 2  | 1                                           | Curtin:B03 |                                       |
+		| 3  | 2                                           | Curtin:B01 |                                       |
+		| 4  | 2                                           | Curtin:B03 |                                       |
+		| 5  | 2                                           | Curtin:B06 |                                       |
+		| 6  | 2                                           | Curtin:B01 | {"Aggregation":"Sum", "TimeSpan":1440}|
+		| 7  | 1                                           | Curtin:    | {"Aggregation":"Avg", "TimeSpan":1440}|
+		| 8  | 2                                           | Curtin:    | {"Aggregation":"Sum", "TimeSpan":10080}|
+		| 9  | 2                                           | Curtin:    | {"Aggregation":"Sum", "TimeSpan":1440}|
 
 - **Sensor_Readings**: This is the table from the problem statement and is responsible for storing all time series data. It is composed of an Id, Sensor_Id (FK to Sensors), Sensor_Value, and Date_Created. Note: The sample data here doesn't show any aggregate calculation entries.
 	- | Id | Sensor_Id (FK Sensors [Id]) | Sensor_Value | Date_Created        
