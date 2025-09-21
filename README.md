@@ -48,25 +48,25 @@ The tables and sample data used in this design are as follows:
 
 - **Sensor_Readings**: This is the table from the problem statement and is responsible for storing all time series data. It is composed of an Id, Sensor_Id (FK to Sensors), Sensor_Value, and Date_Created. Note: The sample data here doesn't show any aggregate calculation entries.
 	- | Id | Sensor_Id (FK Sensors [Id]) | Sensor_Value | Date_Created        
-|----|------------------------------|--------------|---------------------|
-| 1  | 1                            | 21           | 19/09/2025 12:00 am |
-| 2  | 2                            | 20           | 19/09/2025 1:00 am  |
-| 3  | 3                            | 2            | 19/09/2025 2:00 am  |
-| 4  | 4                            | 1            | 19/09/2025 2:30 am  |
-| 5  | 5                            | 2            | 19/09/2025 3:00 am  |
-| 6  | 5                            | 1            | 19/09/2025 5:00 am  |
-| 7  | 4                            | 2            | 19/09/2025 10:00 am |
-| 8  | 3                            | 1            | 19/09/2025 4:00 pm  |
-| 9  | 2                            | 20           | 19/09/2025 12:00 am |
-| 10 | 1                            | 21           | 19/09/2025 12:00 am |
+		|----|------------------------------|--------------|---------------------|
+		| 1  | 1                            | 21           | 19/09/2025 12:00 am |
+		| 2  | 2                            | 20           | 19/09/2025 1:00 am  |
+		| 3  | 3                            | 2            | 19/09/2025 2:00 am  |
+		| 4  | 4                            | 1            | 19/09/2025 2:30 am  |
+		| 5  | 5                            | 2            | 19/09/2025 3:00 am  |
+		| 6  | 5                            | 1            | 19/09/2025 5:00 am  |
+		| 7  | 4                            | 2            | 19/09/2025 10:00 am |
+		| 8  | 3                            | 1            | 19/09/2025 4:00 pm  |
+		| 9  | 2                            | 20           | 19/09/2025 12:00 am |
+		| 10 | 1                            | 21           | 19/09/2025 12:00 am |
 
 - **Scheduled_Calcs**: This table represents scheduled jobs that occur to solve the problem statement, it stores the name of the job and the sensor_id (FK to Sensors) for the aggregate function.
 	- | Id | Name | Sensor_Id (FK Sensors [Id]) 
-|----|--------------------------------|----------------------------|
-| 1  | Calc_Curtin: Avg_Temp_Day      | 7                          |
-| 2  | Calc_Curtin:B01_Sum_Energy_Day | 6                          |
-| 3  | Calc_Curtin: Sum_Energy_Day    | 9                          |
-| 4  | Calc_Curtin: Sum_Energy_Week   | 8                          |
+		|----|--------------------------------|----------------------------|
+		| 1  | Calc_Curtin: Avg_Temp_Day      | 7                          |
+		| 2  | Calc_Curtin:B01_Sum_Energy_Day | 6                          |
+		| 3  | Calc_Curtin: Sum_Energy_Day    | 9                          |
+		| 4  | Calc_Curtin: Sum_Energy_Week   | 8                          |
 
 - **Sensor_Calc_Relationships**: This table describes all the child sensors that are required to create the aggregate sensor. It is composed of a Sensor_Parent_Id (FK to Sensors) and Sensor_Child_Id (FK to Sensors).
 	- | Parent_Sensor_Id (FK Sensor [Id])| Child_Sensor_Id (FK Sensor [Id]) 
