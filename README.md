@@ -62,11 +62,11 @@ The tables and sample data used in this design are as follows:
 
 - **Scheduled_Calcs**: This table represents scheduled jobs that occur to solve the problem statement, it stores the name of the job and the sensor_id (FK to Sensors) for the aggregate function.
 	- | Id | Name | Sensor_Id (FK Sensors [Id]) 
-|----|------|----------------------------|
-| 1  | Calc_Curtin: Avg_Temp_Day | 7 |
-| 2  | Calc_Curtin:B01_Sum_Energy_Day | 6 |
-| 3  | Calc_Curtin: Sum_Energy_Day | 9 |
-| 4  | Calc_Curtin: Sum_Energy_Week | 8 |
+|----|--------------------------------|----------------------------|
+| 1  | Calc_Curtin: Avg_Temp_Day      | 7                          |
+| 2  | Calc_Curtin:B01_Sum_Energy_Day | 6                          |
+| 3  | Calc_Curtin: Sum_Energy_Day    | 9                          |
+| 4  | Calc_Curtin: Sum_Energy_Week   | 8                          |
 
 - **Sensor_Calc_Relationships**: This table describes all the child sensors that are required to create the aggregate sensor. It is composed of a Sensor_Parent_Id (FK to Sensors) and Sensor_Child_Id (FK to Sensors).
 	- | Parent_Sensor_Id (FK Sensor [Id])| Child_Sensor_Id (FK Sensor [Id]) 
