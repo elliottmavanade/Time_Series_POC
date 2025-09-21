@@ -28,13 +28,13 @@ Under the assumptions that the database has been designed in the best possible w
 All table scripts can be located [here](./SQLScripts)
 The tables and sample data used in this design are as follows:
 - **Sensor_Categories**: This table stores information on the sensors model and its unit of measurement along with an identifier.	
-	- | Id | Sensor_Model | Measurement_Unit |
+	- | Id | Sensor_Model | Measurement_Unit 
 	|----|--------------|------------------|
 	| 1  | Thermostat   | C                |
 	| 2  | EnergyMeter  | kWh              |
 
 - **Sensors**: This table stores information about each sensor, including its type (FK to Sensor_Categories), its location and a Json object to store its optional metadata (eg., Aggregation, Timespan). The location is string that can be seperated on ':' to location the place (eg., Curtin, UWA, etc), the building (eg., B01, B02, etc) and extended further where required. In a production scenario, the location would be its own table and Sensors would contain an FK to the ID.
-	- | Id | Sensor_Model_Id (FK Sensor_Categories [Id]) | Location   | Metadata                              |
+	- | Id | Sensor_Model_Id (FK Sensor_Categories [Id]) | Location   | Metadata                              
 |----|---------------------------------------------|------------|---------------------------------------|
 | 1  | 1                                           | Curtin:B01 |                                       |
 | 2  | 1                                           | Curtin:B03 |                                       |
@@ -47,7 +47,7 @@ The tables and sample data used in this design are as follows:
 | 9  | 2                                           | Curtin:    | {"Aggregation":"Sum", "TimeSpan":1440}|
 
 - **Sensor_Readings**: This is the table from the problem statement and is responsible for storing all time series data. It is composed of an Id, Sensor_Id (FK to Sensors), Sensor_Value, and Date_Created. Note: The sample data here doesn't show any aggregate calculation entries.
-	- | Id | Sensor_Id (FK Sensors [Id]) | Sensor_Value | Date_Created        |
+	- | Id | Sensor_Id (FK Sensors [Id]) | Sensor_Value | Date_Created        
 |----|------------------------------|--------------|---------------------|
 | 1  | 1                            | 21           | 19/09/2025 12:00 am |
 | 2  | 2                            | 20           | 19/09/2025 1:00 am  |
@@ -61,7 +61,7 @@ The tables and sample data used in this design are as follows:
 | 10 | 1                            | 21           | 19/09/2025 12:00 am |
 
 - **Scheduled_Calcs**: This table represents scheduled jobs that occur to solve the problem statement, it stores the name of the job and the sensor_id (FK to Sensors) for the aggregate function.
-	- | Id | Name | Sensor_Id (FK Sensors [Id]) |
+	- | Id | Name | Sensor_Id (FK Sensors [Id]) 
 |----|------|----------------------------|
 | 1  | Calc_Curtin: Avg_Temp_Day | 7 |
 | 2  | Calc_Curtin:B01_Sum_Energy_Day | 6 |
