@@ -25,7 +25,7 @@ namespace ConsumerFA.Functions
 
         [Function("ReceiveScheduledCalculations")]
         public async Task Run(
-            [ServiceBusTrigger("scheduled-tasks-queue", Connection = "SERVICE_BUS_CONNECTION")]
+            [ServiceBusTrigger("scheduled-tasks-queue", Connection = "SERVICE_BUS_CONNECTION")] //TODO: Add to appsettings
             ServiceBusReceivedMessage message,
             ServiceBusMessageActions messageActions)
         {
@@ -73,7 +73,7 @@ namespace ConsumerFA.Functions
                 // Add the aggregated result into the Time Series table
                 await _apiService.AddCalculatedResult(scheduledCalculationTask.Sensor_Id, calculationResult);
 
-                Console.WriteLine($"The calculation result for: {scheduledCalculationTask.Sensor_Id}, Name: {scheduledCalculationTask.Name} over {sensor.Timespan} is: {calculationResult} ");
+                _logger.LogInformation($"The calculation result for: {scheduledCalculationTask.Sensor_Id}, Name: {scheduledCalculationTask.Name} over {sensor.Timespan} is: {calculationResult} ");
                 
                 // Complete the message only after successful processing
                 await messageActions.CompleteMessageAsync(message);
@@ -97,13 +97,13 @@ namespace ConsumerFA.Functions
                     _logger.LogError(inner, "Error in parallel API calls.");
                 }
                 // Dead-letter the message if API calls fail
-                await messageActions.DeadLetterMessageAsync(message, null, "InvalidData", ex.Message);
+                await messageActions.DeadLetterMessageAsync(message, null, "Invalid Data", ex.Message);
             }
             catch (InvalidDataException ex)
             {
                 _logger.LogError(ex, "Invalid data encountered while processing message. MessageId: {id}", message.MessageId);
                 // Dead-letter the message if data is invalid
-                await messageActions.DeadLetterMessageAsync(message, null, "InvalidData", ex.Message);
+                await messageActions.DeadLetterMessageAsync(message, null, "Invalid Data", ex.Message);
             }
             catch (Exception ex)
             {

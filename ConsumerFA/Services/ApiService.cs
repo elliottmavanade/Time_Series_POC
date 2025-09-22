@@ -35,6 +35,7 @@ namespace ConsumerFA.Services
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
+            // TODO: Create a generic function for deserialization
             var json = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var jobs = JsonSerializer.Deserialize<Tuple<int, List<int>>>(json, options);
@@ -50,6 +51,7 @@ namespace ConsumerFA.Services
             var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
+            // TODO: Create a generic function for deserialization
             var json = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var sensor = JsonSerializer.Deserialize<Sensor>(json, options);
@@ -61,6 +63,7 @@ namespace ConsumerFA.Services
         {
             var url = $"http://localhost:5170/{ApiRoutes.TimeSeries}/{ActionRoutes.GetTimeSeriesDataByIds}";
 
+            // TODO: Revist creating payload like this
             var data = new
             {
                 ChildIds = childIds,
@@ -73,6 +76,7 @@ namespace ConsumerFA.Services
             var response = await _httpClient.PostAsync(url, content);
             response.EnsureSuccessStatusCode();
 
+            // TODO: Create a generic function for deserialization
             var jsonResponse = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             var result = JsonSerializer.Deserialize<List<int>>(jsonResponse, options);
@@ -97,7 +101,6 @@ namespace ConsumerFA.Services
             response.EnsureSuccessStatusCode();
 
             return response.IsSuccessStatusCode;
-
         }
     }
 }

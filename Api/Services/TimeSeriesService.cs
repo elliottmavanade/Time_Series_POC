@@ -44,7 +44,7 @@ namespace Api.Services
             return scheduledRuns;
         }
 
-        public Task<List<int>> GetTimeSeriesDataAsync(int id, int timespan)
+        public Task<List<int>> GetTimeSeriesDataAsync(int id, int timespan) // Allow for single ID for convenience
             => QueryTimeSeriesAsync(new[] { id }, timespan);
 
         public Task<List<int>> GetTimeSeriesDataAsync(IEnumerable<int> ids, int timespan)

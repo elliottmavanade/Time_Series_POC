@@ -2,12 +2,11 @@
 {
     public class ActionRoutes
     {
-        public const string Empty = "";
-        
         // Client
-        public const string AddClient = "/AddClient";
+        public const string AddClient = "AddClient";
 
         // Dashboard
+        public const string GetDashboardData = "GetDashboardData";
 
         // TimeSeries
         public const string GetScheduledCalculations = "GetScheduledTasks";

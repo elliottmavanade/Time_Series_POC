@@ -1,5 +1,11 @@
 ﻿namespace Api.Models.DTOs
 {
+    /// <summary>
+    /// Model to retrieve data out of the Sensor table.
+    /// SensorMetadata class to transfer metadata as a JSON string.
+    /// </summary>
+    /// <seealso cref="System.IEquatable&lt;Api.Models.DTOs.SensorDTO&gt;" />
+    /// TODO Edit XML Comment Template for SensorDTO
     public record SensorDTO
     {
         public required int Id { get; init; }

@@ -21,7 +21,7 @@ namespace ConsumerFA.Services
             if (data == null || data.Count == 0)
             {
                 _logger.LogWarning("No data provided for calculation.");
-                return 0; // or throw an exception based on your requirements
+                throw new InvalidDataException($"No data values for aggregation calculation: {aggregation}");
             }
             return aggregation.ToLower() switch
             {

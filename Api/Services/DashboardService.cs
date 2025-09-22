@@ -6,7 +6,5 @@ namespace Api.Services
 {
     public class DashboardService : IDashboardService
     {
-        private static string connectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=TimeSeriesPoc;Trusted_Connection=True;";
-   
     }
 }

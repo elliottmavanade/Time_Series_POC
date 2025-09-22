@@ -13,6 +13,7 @@ namespace ProducerFA.Services
         private readonly ILogger<ProducerService> _logger;
         private readonly ServiceBusClient _client;
 
+        // TODO: Store in App Settings
         private const string QueueName = "scheduled-tasks-queue";
         private const string fullyQualifiedNamespace = "Endpoint=sb://localhost;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;";
 
