@@ -1,3 +1,6 @@
+using Api.Services;
+using Api.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -9,8 +12,16 @@ builder.Services.AddCors(policyBuilder =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<ITimeSeriesService, TimeSeriesService>();
+builder.Services.AddScoped<ISensorService, SensorService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 var app = builder.Build();
 

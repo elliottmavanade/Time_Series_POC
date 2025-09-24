@@ -1,10 +1,11 @@
+using Api.Infrastructure;
 using Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route(ApiRoutes.Client)]
     public class ClientController : ControllerBase
     {
         private readonly ILogger<ClientController> _logger;
@@ -16,11 +17,14 @@ namespace Api.Controllers
             _clientService = clientService;
         }
 
+        // Dummy endpoint to illustrate structure
         [HttpPost]
-        [Route()]
-        public Task<> AddNewClient()
+        [Route(ActionRoutes.AddClient)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddClient() 
         {
-
+            throw new NotImplementedException();
         }
     }
 }

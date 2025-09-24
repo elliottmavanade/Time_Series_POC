@@ -1,6 +1,10 @@
-﻿namespace Api.Services.Interfaces
+﻿using Domain.Models;
+
+namespace Api.Services.Interfaces
 {
     public interface IDashboardService
     {
+
+
     }
 }

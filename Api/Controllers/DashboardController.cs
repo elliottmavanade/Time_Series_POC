@@ -1,33 +1,31 @@
+using Api.Infrastructure;
+using Api.Services.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route(ApiRoutes.Dashboard)]
+    public class DashboardController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly ILogger<DashboardController> _logger;
+        private readonly IDashboardService _dashboardService;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public DashboardController(ILogger<DashboardController> logger, IDashboardService dashboardService)
         {
             _logger = logger;
+            _dashboardService = dashboardService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        // Dummy endpoint to illustrate structure
+        [HttpGet]
+        [Route(ActionRoutes.GetDashboardData)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetDashboardData()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            throw new NotImplementedException();
         }
     }
 }
