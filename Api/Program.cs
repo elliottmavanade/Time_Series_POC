@@ -1,5 +1,7 @@
 using Api.Services;
 using Api.Services.Interfaces;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddDbContext<TimeSeriesPocDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TimeSeriesPoc")));
 
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<ITimeSeriesService, TimeSeriesService>();
