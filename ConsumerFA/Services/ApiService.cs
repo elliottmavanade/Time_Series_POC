@@ -1,5 +1,7 @@
 ﻿using Api.Infrastructure;
+using ConsumerFA.Models;
 using ConsumerFA.Services.Interfaces;
+using Domain.Enums;
 using Domain.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -54,9 +56,27 @@ namespace ConsumerFA.Services
             // TODO: Create a generic function for deserialization
             var json = await response.Content.ReadAsStringAsync();
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var sensor = JsonSerializer.Deserialize<Sensor>(json, options);
+            var sensorResponse = JsonSerializer.Deserialize<ApiSensorResponse>(json, options);
 
-            return sensor ?? throw new InvalidDataException($"Unable to deserialize Sensor, {json}");
+            if (sensorResponse == null)
+            {
+                throw new InvalidDataException($"Unable to deserialize Sensor, {json}");
+            }
+
+            // Api now returns the raw scaffolded entity shape (Metadata as an un-parsed JSON string), so
+            // ConsumerFA is responsible for deriving Aggregation/Timespan itself.
+            var metadata = sensorResponse.Metadata != null
+                ? JsonSerializer.Deserialize<SensorMetadata>(sensorResponse.Metadata, options)
+                : null;
+
+            return new Sensor
+            {
+                Id = sensorResponse.Id,
+                Sensor_Model_Id = sensorResponse.SensorModelId,
+                Location = sensorResponse.Location,
+                Aggregation = metadata?.Aggregation != null && Enum.TryParse<AggregationType>(metadata.Aggregation, out var agg) ? agg : null,
+                Timespan = metadata?.Timespan
+            };
         }
 
         public async Task<List<int>> GetTimeSeriesData(List<int> childIds, int timespan)

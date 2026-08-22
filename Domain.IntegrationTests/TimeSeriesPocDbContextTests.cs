@@ -65,6 +65,7 @@ public class TimeSeriesPocDbContextTests
     [InlineData(typeof(Sensor))]
     [InlineData(typeof(SensorReading))]
     [InlineData(typeof(ScheduledCalc))]
+    [InlineData(typeof(SensorCalcRelationship))]
     public async Task CanQuery_EveryScaffoldedTable(Type _)
     {
         await using var context = CreateContext();
@@ -75,21 +76,19 @@ public class TimeSeriesPocDbContextTests
         await context.Sensors.CountAsync();
         await context.SensorReadings.CountAsync();
         await context.ScheduledCalcs.CountAsync();
+        await context.SensorCalcRelationships.CountAsync();
     }
 
     [Fact]
-    public async Task CanQuery_SensorCalcRelationships_ViaSkipNavigations()
+    public async Task CanQuery_SensorCalcRelationships_AsExplicitJoinEntity()
     {
-        // Sensor_Calc_Relationships is a pure join table (composite key of the two FKs only),
-        // so EF Core's scaffolder models it as skip navigations on Sensor rather than its own
-        // entity class. Querying through those navigations confirms the join table is mapped.
+        // Sensor_Calc_Relationships is modeled as an explicit SensorCalcRelationship join entity
+        // (ParentSensorId/ChildSensorId), not an EF skip-navigation many-to-many, so a parent sensor's
+        // children can be queried directly against it.
         await using var context = CreateContext();
 
-        var sensors = await context.Sensors
-            .Include(s => s.SensorParents)
-            .Include(s => s.SensorChildren)
-            .ToListAsync();
+        var relationships = await context.SensorCalcRelationships.ToListAsync();
 
-        Assert.NotNull(sensors);
+        Assert.NotEmpty(relationships);
     }
 }

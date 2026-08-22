@@ -1,11 +1,9 @@
-﻿using Domain.Models;
-
-namespace Api.Services.Interfaces
+﻿namespace Api.Services.Interfaces
 {
     public interface ISensorService
     {
         Task<Tuple<int, List<int>>> GetSensorRelationshipsAsync(int parentId);
 
-        Task<Sensor> GetSensorAsync(int parentId);
+        Task<Domain.Entities.Sensor?> GetSensorAsync(int sensorId);
     }
 }

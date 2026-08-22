@@ -29,11 +29,7 @@ public partial class Sensor
     [InverseProperty("Sensor")]
     public virtual ICollection<SensorReading> SensorReadings { get; set; } = new List<SensorReading>();
 
-    [ForeignKey("SensorParentId")]
-    [InverseProperty("SensorParents")]
-    public virtual ICollection<Sensor> SensorChildren { get; set; } = new List<Sensor>();
-
-    [ForeignKey("SensorChildId")]
-    [InverseProperty("SensorChildren")]
-    public virtual ICollection<Sensor> SensorParents { get; set; } = new List<Sensor>();
+    // Sensor_Calc_Relationships (self-referencing parent/child) is modeled as an explicit
+    // SensorCalcRelationship join entity (see Domain.Entities.SensorCalcRelationship) rather than an
+    // EF skip-navigation many-to-many, so no SensorChildren/SensorParents navigation collections live here.
 }
